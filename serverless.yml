@@ -1,0 +1,47 @@
+service: interactive-voice-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: eu-central-1
+  memorySize: 128
+  environment:
+    DYNAMODB_TABLE: SubCustomers
+
+custom:
+  dynamodb:
+    start:
+      migrate: true
+  serverless-offline:
+    httpPort: 3000
+
+functions:
+  app:
+    handler: src/handler.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+resources:
+  Resources:
+    SubCustomersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: customerId
+            AttributeType: S
+          - AttributeName: subCustomerId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: customerId
+            KeyType: HASH
+          - AttributeName: subCustomerId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+
+plugins:
+ - serverless-offline
