@@ -16,16 +16,12 @@ To run the provided code, some dependencies are needed.
 - Node.js: Available for download at https://nodejs.org/es
 - AWS CLI: Available with instructions at https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html.
 You'll need to create an AWS user using IAM and add the key and secret key to the AWS CLI console, following the instructions on the Quick Setup section of the provided link.
-- Once the code has been cloned, install the npm dependencies using 'npm install'
+- Once the code has been cloned, install the npm dependencies using `npm install`
 
-To run the API locally, open a console on the root directory of the project and run the command 'serverless offline'. This will use the serverless-plugin to deploy an offline version of a dynamoDB database, Lambda and API Gateway, and will launch the application. You'll have to point the dynamoDB endpoint to your local instance of the database.
-
-### Testing
-
-The application has Cucumber tests that can be run from a console with the command 'npm run test-cucumber'. This will run the Scenarios defined in subCustomer.feature file, following the step definitions found inside the step_definitions folder, in the subCustomerSteps.js file.
+To run the API locally, open a console on the root directory of the project and run the command `serverless offline`. This will use the serverless-plugin to deploy an offline version of a dynamoDB database, Lambda and API Gateway, and will launch the application. You'll have to point the dynamoDB endpoint to your local instance of the database.
 
 ### Deploying to AWS
-To deploy the API to Amazon Web Services, run the command 'serverless deploy'. It will package and create the necessary elements in AWS to deploy and run the application. It is important that the AWS user you assigned to the CLI has the necessary permissions to access all the services needed:
+To deploy the API to Amazon Web Services, run the command `serverless deploy`. It will package and create the necessary elements in AWS to deploy and run the application. It is important that the AWS user you assigned to the CLI has the necessary permissions to access all the services needed:
 
  - dynamoDB
  - cloudFormation  
@@ -36,3 +32,7 @@ To deploy the API to Amazon Web Services, run the command 'serverless deploy'. I
  - Lambda
 
 Once the deployment is successful, make note of the URL endpoint displayed on console to access your API.
+
+## Testing
+
+The application has Cucumber tests that can be run from a console with the command `npm run test-cucumber`. This will run the Scenarios defined in subCustomer.feature file, following the step definitions found inside the step_definitions folder, in the subCustomerSteps.js file.
